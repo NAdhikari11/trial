@@ -3,14 +3,21 @@ const mysql2 = require('mysql2');
 
 const app = express();
 app.use(express.json())
-
+require('dotenv').config({ path: `.env` });
 const PORT = 3000;
 
+const db_host = process.env.HOST;
+const db_user = process.env.USER;
+const db_password = process.env.PASSWORD;
+const db_database = process.env.DATABASE;
+
+console.log(db_host);
+
 const db = mysql2.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '*Delphinus11',
-    database: 'nodejs_rest_api'
+    host: db_host,
+    user: db_user,
+    password: db_password,
+    database: db_database
 })
 
 db.connect((err) =>{
